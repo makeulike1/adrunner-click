@@ -9,18 +9,18 @@ public class GlobalConstant {
 
 
     // REDIS 서버 호스트 1
-	public static String[]      REDIS_HOST          =   {"localhost"};
+	public static String[]      REDIS_HOST          =   {"172.16.1.6"};
 	public static Integer[]     REDIS_PORT          =   {6379};
     public static Integer       NUMBER_OF_REDIS     =   1;
     public static Integer       NUMBER_OF_REDISDB   =   16;
 
 
     // 클릭 서버 호스트
-    public static String    CLICK_SERVER_HOST       =   "http://test.adrunner.co.kr:8080";
+    public static String    CLICK_SERVER_HOST       =   "http://test.adrunner.co.kr:8081";
 
 
     // 포스트백 서버 호스트
-    public static String    POSTBACK_SERVER_HOST    =   "http://test.adrunner.co.kr:8080";
+    public static String    POSTBACK_SERVER_HOST    =   "http://test.adrunner.co.kr:8082";
 
     
     // 데이터베이스 서버 호스트
