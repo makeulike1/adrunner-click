@@ -9,8 +9,7 @@ public class GlobalConstant {
 
 
     // REDIS 서버 호스트 1
-	//public static String[]      REDIS_HOST          =   {"172.16.1.6"};
-    public static String[]      REDIS_HOST          =   {"localhost"};
+	public static String[]      REDIS_HOST          =   {"172.16.1.6"};
 	public static Integer[]     REDIS_PORT          =   {6379};
     public static Integer       NUMBER_OF_REDIS     =   1;
     public static Integer       NUMBER_OF_REDISDB   =   16;
