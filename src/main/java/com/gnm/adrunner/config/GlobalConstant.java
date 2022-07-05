@@ -9,7 +9,8 @@ public class GlobalConstant {
 
 
     // REDIS 서버 호스트 1
-	public static String[]      REDIS_HOST          =   {"172.16.1.6"};
+	//public static String[]      REDIS_HOST          =   {"172.16.1.6"};
+    public static String[]      REDIS_HOST          =   {"localhost"};
 	public static Integer[]     REDIS_PORT          =   {6379};
     public static Integer       NUMBER_OF_REDIS     =   1;
     public static Integer       NUMBER_OF_REDISDB   =   16;
@@ -43,6 +44,11 @@ public class GlobalConstant {
     public static Integer   ADS_STATUS_DISMISS          = 2;
     public static Integer   ADS_STATUS_LOOPBACK         = 3;
 
+
+
+
+    // 제휴사 번호 0은 파이어베이스 동적링크
+    public static Integer   AFF_ID_DYNAMIC_LINK         = 0;        
 
 
     public static Integer   AFF_STATUS_READY            = 0;

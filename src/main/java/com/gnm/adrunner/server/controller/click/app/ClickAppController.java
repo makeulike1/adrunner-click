@@ -6,6 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import com.gnm.adrunner.util.timeBuilder;
 import javax.servlet.http.HttpServletRequest;
@@ -215,33 +220,74 @@ public class ClickAppController extends RequestResponseInterface{
     // 제휴사 파라미터 조합으로 트래킹 URL 생성 ****/
     public String buildTrackingURL(String trackingURL, Integer affId, clickParam cp){
         
-        String redirectURL = trackingURL;
+        String redirectURL = "";
  
-         
-        for(AffParam it : MemoryData.affParamList){
+        // 제휴사 식별자가 0이면 Firebase 동적링크 리다이렉트
+        if(affId == GlobalConstant.AFF_ID_DYNAMIC_LINK){
+ 
+            try{
 
-            if(it.getAffId() == affId){
-                // 파라미터 타입이 0 혹은 2인 경우,  기존 URL의 파라미터를 클릭으로 들어온 인자로 변경함
-                if((it.getParamType().equals(0) || it.getParamType().equals(2)))
-                    redirectURL = clickUrlBuilder.replaceUrlQuery(
-                            it.getParamKey(),
-                            it.getParamValue(),
-                            it.getPassValue(),
-                            redirectURL, cp);
-                        
+                // 동적링크 : [URL프리픽스]/?link=[딥 링크][&쿼리]
+                String[] token = trackingURL.split("link=");
+                String[] urlQuery = token[1].split("&");
 
-                // 파라미터 타입이 1인 경우, 기본 URL 위에 쿼리를 신규로 추가 
-                if(it.getParamType().equals(1))
-                    redirectURL = clickUrlBuilder.buildUrlAddQuery(
-                            it.getParamKey(),
-                            it.getParamValue(), redirectURL, cp);
+                String tmp = "";
+
+                if(urlQuery[0].contains("%3F"))
+                    tmp = "%26";
+                else tmp =  "%3F";
+
+                redirectURL = token[0] +"link="+urlQuery[0]+tmp+"adrunner_ck="+cp.getClick_key();
+
+                if(urlQuery.length > 1){
+                    for(int i=1; i<urlQuery.length; i++)
+                        redirectURL += "&" + urlQuery[i];
+                }
+
+            }catch(Exception e){
+
             }
-                        
+        
+
+        }else{
+
+            for(AffParam it : MemoryData.affParamList){
+
+                if(it.getAffId() == affId){
+                    // 파라미터 타입이 0 혹은 2인 경우,  기존 URL의 파라미터를 클릭으로 들어온 인자로 변경함
+                    if((it.getParamType().equals(0) || it.getParamType().equals(2)))
+                        redirectURL = clickUrlBuilder.replaceUrlQuery(
+                                it.getParamKey(),
+                                it.getParamValue(),
+                                it.getPassValue(),
+                                redirectURL, cp);
+                            
+
+                    // 파라미터 타입이 1인 경우, 기본 URL 위에 쿼리를 신규로 추가 
+                    if(it.getParamType().equals(1))
+                        redirectURL = clickUrlBuilder.buildUrlAddQuery(
+                                it.getParamKey(),
+                                it.getParamValue(), redirectURL, cp);
+                }
+                            
+            }
         }
 
         return redirectURL;
 
 
+    }
+ 
+    
+    public static Map<String, String> splitQuery(URL url) throws UnsupportedEncodingException {
+        Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+        String query = url.getQuery();
+        String[] pairs = query.split("&");
+        for (String pair : pairs) {
+            int idx = pair.indexOf("=");
+            query_pairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+        }
+        return query_pairs;
     }
 
 
