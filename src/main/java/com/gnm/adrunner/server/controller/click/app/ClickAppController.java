@@ -249,6 +249,9 @@ public class ClickAppController extends RequestResponseInterface{
             }
         
 
+        }else if(affId == GlobalConstant.AFF_ID_DIRECT_LINK){
+            redirectURL = trackingURL;
+
         }else{
 
             for(AffParam it : MemoryData.affParamList){
@@ -260,7 +263,7 @@ public class ClickAppController extends RequestResponseInterface{
                                 it.getParamKey(),
                                 it.getParamValue(),
                                 it.getPassValue(),
-                                redirectURL, cp);
+                                trackingURL, cp);
                             
 
                     // 파라미터 타입이 1인 경우, 기본 URL 위에 쿼리를 신규로 추가 

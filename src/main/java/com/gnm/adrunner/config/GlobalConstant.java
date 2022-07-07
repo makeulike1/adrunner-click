@@ -3,6 +3,9 @@ package com.gnm.adrunner.config;
 public class GlobalConstant {
 
 
+
+
+
     // 서버 정보
     public static String    HOST_NCPI_POSTBACK = "https://postback.adrunner.com/postback/ncpi";
 
@@ -46,8 +49,9 @@ public class GlobalConstant {
 
 
 
-    // 제휴사 번호 0은 파이어베이스 동적링크
+    // 제휴사 번호 0은 파이어베이스 동적링크, 1은 직광고
     public static Integer   AFF_ID_DYNAMIC_LINK         = 0;        
+    public static Integer   AFF_ID_DIRECT_LINK          = 1;
 
 
     public static Integer   AFF_STATUS_READY            = 0;
