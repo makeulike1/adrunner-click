@@ -24,14 +24,14 @@ public class timeBuilder {
 
     // 현재 시각 반환
     public static String getCurrentTime(){
-        simpleDateFormat0.setTimeZone(timeZone);
-        return simpleDateFormat0.format(Calendar.getInstance(timeZone).getTime());
+        simpleDateFormat.setTimeZone(timeZone);
+        return simpleDateFormat.format(Calendar.getInstance(timeZone).getTime());
     }
 
     // 현재 시각 반환
     public static String getCurrentTime2(){
-        simpleDateFormat.setTimeZone(timeZone);
-        return simpleDateFormat.format(Calendar.getInstance(timeZone).getTime());
+        simpleDateFormat0.setTimeZone(timeZone);
+        return simpleDateFormat0.format(Calendar.getInstance(timeZone).getTime());
     }
 
     // 현재 시각 반환
