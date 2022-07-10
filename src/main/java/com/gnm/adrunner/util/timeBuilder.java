@@ -37,6 +37,7 @@ public class timeBuilder {
     public static String getYesterdayStartTime(){
         Calendar c = Calendar.getInstance(timeZone);
         c.add(Calendar.DATE, -1);
+        simpleDateFormat1.setTimeZone(timeZone);
         return simpleDateFormat1.format(c.getTime());
     }
 
@@ -45,6 +46,7 @@ public class timeBuilder {
     public static String getYesterdayEndTime(){
         Calendar c = Calendar.getInstance(timeZone);
         c.add(Calendar.DATE, -1);
+        simpleDateFormat2.setTimeZone(timeZone);
         return simpleDateFormat2.format(c.getTime());
     }
     
@@ -53,6 +55,7 @@ public class timeBuilder {
     public static String getYesterdayDate(){
         Calendar c = Calendar.getInstance(timeZone);
         c.add(Calendar.DATE, -1);
+        simpleDateFormat3.setTimeZone(timeZone);
         return simpleDateFormat3.format(c.getTime());
     }
 
@@ -62,6 +65,7 @@ public class timeBuilder {
     public static String getPreviousDate(Integer day){
         Calendar c = Calendar.getInstance(timeZone);
         c.add(Calendar.DATE, day);
+        simpleDateFormat3.setTimeZone(timeZone);
         return simpleDateFormat3.format(c.getTime());
     }
 
