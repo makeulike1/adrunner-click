@@ -21,7 +21,7 @@ public class RequestResponseInterface {
             case 209:return "파라미터가 유효하지 않습니다. ";
             case 211:return "일시 중지된 광고입니다. ";
             case 212:return "매체사 키가 유효하지 않습니다. ";
-            case 213:return "해당 매체사에 연동되어 있는 광고가 아닙니다.";
+            case 213:return "광고가 해당 매체사에 연동되어 있지 않습니다.";
             case 214:return "클릭 키에 해당하는 클릭 로그가 존재하지 않습니다.";
             case 215:return "파라미터로 들어온 시간이 유효한 포맷이 아닙니다.";
             case 216:return "광고가 일일 한도에 도달하였습니다.";
@@ -31,7 +31,7 @@ public class RequestResponseInterface {
             case 224:return "이벤트 값은 필수로 입력해야 합니다.";
             case 225:return "이벤트 시간은 필수로 입력해야 합니다.";
             case 226:return "종료된 광고입니다.";
-            default:return "success.";
+            default:return "성공.";
         }
     }
 
