@@ -44,8 +44,6 @@ public class Ads {
 
     private Boolean isDailyCap;
 
-    private Integer targetImp;
-
     private Integer status;
 
     private String  deletetime;
@@ -192,14 +190,6 @@ public class Ads {
         this.isDailyCap = isDailyCap;
     }
 
-    public Integer getTargetImp() {
-        return targetImp;
-    }
-
-    public void setTargetImp(Integer targetImp) {
-        this.targetImp = targetImp;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -279,8 +269,9 @@ public class Ads {
                 + ", deletetime=" + deletetime + ", description=" + description + ", enddate=" + enddate
                 + ", eventName=" + eventName + ", id=" + id + ", isDailyCap=" + isDailyCap + ", isDelete=" + isDelete
                 + ", loopbackdate=" + loopbackdate + ", name=" + name + ", os=" + os + ", redisIndex=" + redisIndex
-                + ", startdate=" + startdate + ", status=" + status + ", supplyDemand=" + supplyDemand + ", targetImp="
-                + targetImp + ", trackingUrl=" + trackingUrl + ", type=" + type + ", updatetime=" + updatetime + "]";
+                + ", startdate=" + startdate + ", status=" + status + ", supplyDemand=" + supplyDemand
+                + ", trackingUrl=" + trackingUrl + ", type=" + type + ", updatetime=" + updatetime + "]";
     }
+ 
     
 }
