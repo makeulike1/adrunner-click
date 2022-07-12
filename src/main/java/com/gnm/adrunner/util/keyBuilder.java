@@ -7,8 +7,11 @@ public class keyBuilder {
 
     // 클릭키 생성
     // 클릭키 = [광고키]:[매체키]:[클릭시간]:[16자의 랜덤 대문자 UUID]
-    public static String buildCK(String adsKey, String mediaKey){
-        return adsKey + ":" + mediaKey + ":" + timeBuilder.getCurrentTime2() + ":" + UUID.randomUUID().toString().replace("-", "").substring(0, 16).toUpperCase();
+    public static String buildCK(String adsKey, String mediaKey, String ptnCK){
+
+        if((ptnCK != null) && (ptnCK != ""))
+            return adsKey + ":" + mediaKey + ":" + timeBuilder.getCurrentTime2() + ":" + ptnCK;
+        else return adsKey + ":" + mediaKey + ":" + timeBuilder.getCurrentTime2() + ":" + UUID.randomUUID().toString().replace("-", "").substring(0, 16).toUpperCase();
     }
 
 

@@ -37,7 +37,7 @@ public class ClickAppController extends RequestResponseInterface{
 
     @GetMapping("/click/app") 
     public ResponseEntity<String> clickAPP(
-        @RequestParam(value="ptn_clk", required = false, defaultValue = "") String ptnClk,
+        @RequestParam(value="ptn_clk", required = false, defaultValue = "") String ptnCK,
         @RequestParam(value="ptn_pub", required = false) String ptnPub,
         @RequestParam(value="sub_pub", required = false) String subPub,
         @RequestParam(value="gaid", required = false, defaultValue = "") String gaid,
@@ -148,7 +148,7 @@ public class ClickAppController extends RequestResponseInterface{
 
                 
                 // 클릭키 생성
-                String ck    =  keyBuilder.buildCK(adsKey, mediaKey);
+                String ck    =  keyBuilder.buildCK(adsKey, mediaKey, ptnCK);
                        
 
 
@@ -174,7 +174,7 @@ public class ClickAppController extends RequestResponseInterface{
                 cp.setS_p3(sP3);
                 cp.setS_p4(sP4);
                 cp.setS_p5(sP5);
-                cp.setPtn_clk(ptnClk);
+                cp.setPtn_clk(ptnCK);
                 cp.setAds_id(ads.getId().toString());
  
 

@@ -43,6 +43,7 @@ public class ClickWebCpaController extends RequestResponseInterface{
     @GetMapping("/click/web") 
     public ResponseEntity<String> clickWebCPA(
             @RequestParam(value="ads_key", required = false) String adsKey,
+            @RequestParam(value="ptn_clk", required = false) String ptnCK,
             @RequestParam(value="media_key", required = false,  defaultValue = "00000") String mediaKey,
             HttpServletRequest request,
             HttpServletResponse response){
@@ -154,7 +155,7 @@ public class ClickWebCpaController extends RequestResponseInterface{
 
 
             // 클릭키 생성
-            ck    =  keyBuilder.buildCK(adsKey, mediaKey);
+            ck    =  keyBuilder.buildCK(adsKey, mediaKey, ptnCK);
                        
 
             
