@@ -6,12 +6,33 @@ public class keyBuilder {
 
 
     // 클릭키 생성
-    // 클릭키 = [광고키]:[매체키]:[클릭시간]:[16자의 랜덤 대문자 UUID]
-    public static String buildCK(String adsKey, String mediaKey, String ptnCK){
-
-        if(!(ptnCK.equals("")))
-            return adsKey + ":" + mediaKey + ":" + timeBuilder.getCurrentTime2() + ":" + ptnCK;
-        else return adsKey + ":" + mediaKey + ":" + timeBuilder.getCurrentTime2() + ":" + UUID.randomUUID().toString().replace("-", "").substring(0, 16).toUpperCase();
+    // 클릭키 = [광고키]:[매체키]:[클릭시간]:[6자의 랜덤 대문자 UUID]:[매체사 고유 클릭키]:[ptnPub]:[subPub]:[GAID]:[IDFA]:[S_P1]:[S_P2]:[S_P3]:[S_P4]:[S_P5]
+    public static String buildCK(
+        String adsKey, 
+        String mediaKey, 
+        String ptnCK,
+        String ptnPub,
+        String subPub,
+        String sp1,
+        String sp2, 
+        String sp3,
+        String sp4,
+        String sp5,
+        String gaid,
+        String idfa){
+    
+        return  adsKey + ":" + mediaKey + ":" + timeBuilder.getCurrentTime2() + ":" + 
+                UUID.randomUUID().toString().replace("-", "").substring(0, 6).toUpperCase() + ":" +
+                ptnCK   + ":" +
+                ptnPub  + ":" +
+                subPub  + ":" +
+                gaid    + ":" +
+                idfa    + ":" +
+                sp1     + ":" +
+                sp2     + ":" +
+                sp3     + ":" +
+                sp4     + ":" +
+                sp5;
     }
 
 

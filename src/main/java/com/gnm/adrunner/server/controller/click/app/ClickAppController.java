@@ -146,9 +146,8 @@ public class ClickAppController extends RequestResponseInterface{
                 
 
 
-                
-                // 클릭키 생성
-                String ck    =  keyBuilder.buildCK(adsKey, mediaKey, ptnCK);
+         
+                String ck    =  keyBuilder.buildCK(adsKey, mediaKey, ptnCK, ptnPub, subPub, sP1, sP2, sP3, sP4, sP5, gaid, idfa);
                        
 
 

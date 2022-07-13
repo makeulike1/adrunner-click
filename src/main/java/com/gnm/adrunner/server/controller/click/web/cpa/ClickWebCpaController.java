@@ -43,7 +43,16 @@ public class ClickWebCpaController extends RequestResponseInterface{
     @GetMapping("/click/web") 
     public ResponseEntity<String> clickWebCPA(
             @RequestParam(value="ads_key", required = false) String adsKey,
-            @RequestParam(value="ptn_clk", required = false) String ptnCK,
+            @RequestParam(value="ptn_clk", required = false, defaultValue = "") String ptnCK,
+            @RequestParam(value="ptn_pub", required = false) String ptnPub,
+            @RequestParam(value="sub_pub", required = false) String subPub,
+            @RequestParam(value="gaid", required = false, defaultValue = "") String gaid,
+            @RequestParam(value="idfa", required = false, defaultValue = "") String idfa,
+            @RequestParam(value="s_p1", required = false, defaultValue = "") String sP1,
+            @RequestParam(value="s_p2", required = false, defaultValue = "") String sP2,
+            @RequestParam(value="s_p3", required = false, defaultValue = "") String sP3,
+            @RequestParam(value="s_p4", required = false, defaultValue = "") String sP4,
+            @RequestParam(value="s_p5", required = false, defaultValue = "") String sP5,
             @RequestParam(value="media_key", required = false,  defaultValue = "00000") String mediaKey,
             HttpServletRequest request,
             HttpServletResponse response){
@@ -155,7 +164,7 @@ public class ClickWebCpaController extends RequestResponseInterface{
 
 
             // 클릭키 생성
-            ck    =  keyBuilder.buildCK(adsKey, mediaKey, ptnCK);
+            ck    =  keyBuilder.buildCK(adsKey, mediaKey, ptnCK, ptnPub, subPub, sP1, sP2, sP3, sP4, sP5, gaid, idfa);
                        
 
             
