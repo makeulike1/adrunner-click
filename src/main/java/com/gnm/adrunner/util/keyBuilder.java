@@ -9,7 +9,7 @@ public class keyBuilder {
     // 클릭키 = [광고키]:[매체키]:[클릭시간]:[16자의 랜덤 대문자 UUID]
     public static String buildCK(String adsKey, String mediaKey, String ptnCK){
 
-        if((ptnCK != null) && (ptnCK != ""))
+        if(!(ptnCK.equals("")))
             return adsKey + ":" + mediaKey + ":" + timeBuilder.getCurrentTime2() + ":" + ptnCK;
         else return adsKey + ":" + mediaKey + ":" + timeBuilder.getCurrentTime2() + ":" + UUID.randomUUID().toString().replace("-", "").substring(0, 16).toUpperCase();
     }
