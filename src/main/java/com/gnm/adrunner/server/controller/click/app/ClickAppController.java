@@ -4,6 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.UnsupportedEncodingException;
@@ -214,7 +215,7 @@ public class ClickAppController extends RequestResponseInterface{
 
 
 
-
+    @CrossOrigin(origins = "*")
     @GetMapping("/click/test") 
     public ResponseEntity<String> clicktest(
         @RequestParam(value="ptn_clk", required = false, defaultValue = "-") String ptnCK,
