@@ -286,7 +286,7 @@ public class ClickAppController extends RequestResponseInterface{
                         
             return ResponseEntity.status(200)
                 .headers(responseHeaders)
-                .body(gson.toJson(new ResponseTest(redirectURL.toString())));
+                .body(redirectURL);
 
     }
 
