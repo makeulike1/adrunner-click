@@ -205,9 +205,90 @@ public class ClickAppController extends RequestResponseInterface{
             
             return ResponseEntity.status(302)
                 .headers(responseHeaders)
-                .body("url : "+redirectURL);
+                .body(redirectURL);
 
     }
+
+
+
+
+
+
+
+    @GetMapping("/click/test") 
+    public ResponseEntity<String> clicktest(
+        @RequestParam(value="ptn_clk", required = false, defaultValue = "-") String ptnCK,
+        @RequestParam(value="ptn_pub", required = false, defaultValue = "-") String ptnPub,
+        @RequestParam(value="sub_pub", required = false, defaultValue = "-") String subPub,
+        @RequestParam(value="gaid", required = false, defaultValue = "-") String gaid,
+        @RequestParam(value="idfa", required = false, defaultValue = "-") String idfa,
+        @RequestParam(value="s_p1", required = false, defaultValue = "-") String sP1,
+        @RequestParam(value="s_p2", required = false, defaultValue = "-") String sP2,
+        @RequestParam(value="s_p3", required = false, defaultValue = "-") String sP3,
+        @RequestParam(value="s_p4", required = false, defaultValue = "-") String sP4,
+        @RequestParam(value="s_p5", required = false, defaultValue = "-") String sP5,
+        @RequestParam(value="ads_key", required = true) String adsKey,
+        @RequestParam(value="media_key", required = true, defaultValue = "00000") String mediaKey,
+        HttpServletRequest request,
+        HttpServletResponse response){
+            
+        
+            HttpHeaders responseHeaders = new HttpHeaders();
+
+            String redirectURL = "";
+
+            try{
+                 
+
+
+                Ads ads = MemoryData.getAdsByAdsKey(adsKey);
+         
+                String ck    =  keyBuilder.buildCK(adsKey, mediaKey, ptnCK, ptnPub, subPub, sP1, sP2, sP3, sP4, sP5, gaid, idfa);
+                       
+ 
+                // 파라미터 생성을 위해서 클릭 객체 생성
+                clickParam cp = new clickParam();
+                cp.setClick_key(ck);
+                cp.setGaid(gaid);
+                cp.setIdfa(idfa);
+                cp.setPtn_pub(ptnPub);
+                cp.setSub_pub(subPub);
+                cp.setOs(ads.getOs().toString());
+                cp.setAff(ads.getAff().toString());
+                cp.setAds_type(ads.getType().toString());
+                cp.setIp(request.getRemoteAddr());
+                cp.setDatetime(timeBuilder.getCurrentTime());
+                cp.setAds_key(adsKey);
+                cp.setS_p1(sP1);
+                cp.setS_p2(sP2);
+                cp.setS_p3(sP3);
+                cp.setS_p4(sP4);
+                cp.setS_p5(sP5);
+                cp.setPtn_clk(ptnCK);
+                cp.setAds_id(ads.getId().toString());
+ 
+                // 제휴사 파라미터 조합으로 트래킹 URL 생성 ****/
+                redirectURL = buildTrackingURL(ads.getTrackingUrl(),  ads.getAff(),  cp);
+
+
+
+                ads  = null;
+                cp = null;
+                ck = null;
+
+
+
+            }catch(NoSuchElementException e){
+                return ResponseEntity.status(201).headers(responseHeaders).body(RequestResponseInterface.getStatusMessage(201));
+            }
+                        
+            return ResponseEntity.status(200)
+                .headers(responseHeaders)
+                .body(redirectURL);
+
+    }
+
+
 
 
 
@@ -273,8 +354,6 @@ public class ClickAppController extends RequestResponseInterface{
                             
             }
         }
-
-        System.out.println(redirectURL);
 
         return redirectURL;
 
