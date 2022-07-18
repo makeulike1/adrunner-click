@@ -24,6 +24,7 @@ import com.gnm.adrunner.server.controller.click.clickParam;
 import com.gnm.adrunner.server.entity.Ads;
 import com.gnm.adrunner.server.entity.AffParam;
 import com.gnm.adrunner.server.entity.Media;
+import com.gnm.adrunner.server.param.res.admin.ResponseTest;
 import com.gnm.adrunner.util.keyBuilder;
 import com.gnm.adrunner.util.redisUtil;
 import com.gnm.adrunner.util.clickUrlBuilder;
@@ -285,7 +286,7 @@ public class ClickAppController extends RequestResponseInterface{
                         
             return ResponseEntity.status(200)
                 .headers(responseHeaders)
-                .body(redirectURL);
+                .body(gson.toJson(new ResponseTest(redirectURL.toString())));
 
     }
 
