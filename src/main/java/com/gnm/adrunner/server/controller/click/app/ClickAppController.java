@@ -219,7 +219,7 @@ public class ClickAppController extends RequestResponseInterface{
     // 제휴사 파라미터 조합으로 트래킹 URL 생성 ****/
     public String buildTrackingURL(String trackingURL, Integer affId, clickParam cp){
         
-        String redirectURL = "";
+        String redirectURL = trackingURL;
  
         // 제휴사 식별자가 0이면 Firebase 동적링크 리다이렉트
         if(affId == GlobalConstant.AFF_ID_DYNAMIC_LINK){
@@ -254,7 +254,6 @@ public class ClickAppController extends RequestResponseInterface{
         }else{
 
             for(AffParam it : MemoryData.affParamList){
-
                 if(it.getAffId() == affId){
                     // 파라미터 타입이 0 혹은 2인 경우,  기존 URL의 파라미터를 클릭으로 들어온 인자로 변경함
                     if((it.getParamType().equals(0) || it.getParamType().equals(2)))
@@ -262,7 +261,7 @@ public class ClickAppController extends RequestResponseInterface{
                                 it.getParamKey(),
                                 it.getParamValue(),
                                 it.getPassValue(),
-                                trackingURL, cp);
+                                redirectURL, cp);
                             
 
                     // 파라미터 타입이 1인 경우, 기본 URL 위에 쿼리를 신규로 추가 
@@ -274,6 +273,8 @@ public class ClickAppController extends RequestResponseInterface{
                             
             }
         }
+
+        System.out.println(redirectURL);
 
         return redirectURL;
 
