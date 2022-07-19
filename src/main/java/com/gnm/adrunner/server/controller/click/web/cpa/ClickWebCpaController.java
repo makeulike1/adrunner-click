@@ -170,7 +170,7 @@ public class ClickWebCpaController extends RequestResponseInterface{
             
  
             // Redis에 클릭키 삽입
-            redisUtil.putck(ck, adsKey, mediaKey, ads.getRedisIndex());
+            redisUtil.putck(ck, adsKey, mediaKey, ads.getRedisGroup(), ads.getRedisDb());
 
 
 

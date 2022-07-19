@@ -60,7 +60,9 @@ public class Ads {
 
     private Integer cost2;
 
-    private Integer redisIndex;
+    private Integer redisDb;
+
+    private Integer redisGroup;
 
     public Integer getId() {
         return id;
@@ -254,12 +256,20 @@ public class Ads {
         this.cost2 = cost2;
     }
 
-    public Integer getRedisIndex() {
-        return redisIndex;
+    public Integer getRedisDb() {
+        return redisDb;
     }
 
-    public void setRedisIndex(Integer redisIndex) {
-        this.redisIndex = redisIndex;
+    public void setRedisDb(Integer redisDb) {
+        this.redisDb = redisDb;
+    }
+
+    public Integer getRedisGroup() {
+        return redisGroup;
+    }
+
+    public void setRedisGroup(Integer redisGroup) {
+        this.redisGroup = redisGroup;
     }
 
     @Override
@@ -268,10 +278,9 @@ public class Ads {
                 + ", autostart=" + autostart + ", cost1=" + cost1 + ", cost2=" + cost2 + ", createtime=" + createtime
                 + ", deletetime=" + deletetime + ", description=" + description + ", enddate=" + enddate
                 + ", eventName=" + eventName + ", id=" + id + ", isDailyCap=" + isDailyCap + ", isDelete=" + isDelete
-                + ", loopbackdate=" + loopbackdate + ", name=" + name + ", os=" + os + ", redisIndex=" + redisIndex
-                + ", startdate=" + startdate + ", status=" + status + ", supplyDemand=" + supplyDemand
-                + ", trackingUrl=" + trackingUrl + ", type=" + type + ", updatetime=" + updatetime + "]";
-    }
- 
+                + ", loopbackdate=" + loopbackdate + ", name=" + name + ", os=" + os + ", redisDb=" + redisDb
+                + ", redisGroup=" + redisGroup + ", startdate=" + startdate + ", status=" + status + ", supplyDemand="
+                + supplyDemand + ", trackingUrl=" + trackingUrl + ", type=" + type + ", updatetime=" + updatetime + "]";
+    } 
     
 }

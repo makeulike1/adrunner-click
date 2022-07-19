@@ -26,7 +26,7 @@ public class scriptBuilder {
         PrintWriter out = new PrintWriter(bw)){
 
             out.println("function adr_init(){");
-            out.println("fetch(' " +GlobalConstant.CLICK_SERVER_HOST+ "/click/web?ads_key=" +adsKey+ "&media_key=" +mediaKey+"')");
+            out.println("fetch(' " +GlobalConstant.SERVER_HOST_CLICK+ "/click/web?ads_key=" +adsKey+ "&media_key=" +mediaKey+"')");
             out.println(".then(response=>response.text().then(function(text){");
             out.println("if(response.status == 200){");
             out.println("document.cookie = 'click_key='+text");
@@ -40,7 +40,7 @@ public class scriptBuilder {
             out.println("var myRegExp = new RegExp('^' + 'click_key=', 'i');");
             out.println("if(myRegExp.test(document.cookie)){");
             out.println("var clickKey = myRegExp.exec(document.cookie).input.split('=')[1]");
-            out.println("fetch('" +GlobalConstant.POSTBACK_SERVER_HOST+ "/postback/web/cpa?click_key=' +clickKey+'&user_agent=' +encodeURIComponent(userAgent)+ '&referrer=' + referrer)");
+            out.println("fetch('" +GlobalConstant.SERVER_HOST_PBACK+ "/postback/web/cpa?click_key=' +clickKey+'&user_agent=' +encodeURIComponent(userAgent)+ '&referrer=' + referrer)");
             out.println(".then(success =>{");
             out.println("}).catch(error => {");
             out.println("console.log(error)");

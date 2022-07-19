@@ -3,6 +3,8 @@ package com.gnm.adrunner.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gnm.adrunner.server.object.RedisEntity;
+import com.gnm.adrunner.server.object.RedisGroup;
 
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -12,24 +14,46 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 public class RedisConfig {
     
-    public static List<List<RedisTemplate<String, Object>>> redisConn = new ArrayList<List<RedisTemplate<String, Object>>>();
+   
+    public static List<RedisGroup> redisConn = new ArrayList<RedisGroup>();
 
  
     //REDIS 시작
 	public static void init(){
 
-        for(int i=0; i<GlobalConstant.NUMBER_OF_REDIS; i++){
-            List<RedisTemplate<String, Object>> tmp = new ArrayList<RedisTemplate<String, Object>>();
+        // 레디스 서버 그룹 순회
+        for(int rgId=0; rgId<GlobalConstant.NUMBER_OF_REDIS_GROUP;rgId++){
 
-            for(int i1=0; i1<=GlobalConstant.NUMBER_OF_REDISDB; i1++){
-                RedisTemplate<String, Object> conn = buildTemplate(GlobalConstant.REDIS_HOST[i], GlobalConstant.REDIS_PORT[i], i1); 
-                tmp.add(conn);
+
+            Integer numOfRe   = GlobalConstant.SERVER_HOST_REDIS.get(rgId).size();
+
+            
+
+            List<RedisEntity> entityList = new ArrayList<RedisEntity>();
+
+            // 레디스 그룹별 서버 호스트 순회
+            for(int reId=0; reId<numOfRe; reId++){
+
+                List<RedisTemplate<String, Object>> tmp = new ArrayList<RedisTemplate<String, Object>>();
+
+                String  redisHost       = GlobalConstant.SERVER_HOST_REDIS.get(rgId).get(reId);
+
+                // 레디스 DB는 1부터 16개까지
+                for(int rdbId=0; rdbId<GlobalConstant.NUMBER_OF_REDIS_DB; rdbId++)
+                    tmp.add(buildTemplate(redisHost, GlobalConstant.REDIS_PORT, rdbId));
+
+                redisHost = null;
+
+                entityList.add(new RedisEntity(rgId, tmp));
             }
 
-            redisConn.add(tmp);
+        
+            redisConn.add(new RedisGroup(rgId, entityList));
+
+            numOfRe = null;
         }
 	}
-
+    
 
     public static RedisTemplate<String, Object> buildTemplate(String host, Integer port, Integer dbIndex){
         RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
