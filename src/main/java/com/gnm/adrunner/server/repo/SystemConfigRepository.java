@@ -11,13 +11,15 @@ import javax.transaction.Transactional;
 
 public interface SystemConfigRepository extends CrudRepository<SystemConfig, Integer>{
 
-    @Query(value="select redis_index from system_config where id=1", nativeQuery = true)
-    public Integer findRedisIndex();
+    @Query(value="select number_of_redis_group from system_config where id=1", nativeQuery = true)
+    public Integer findNumberOfRedsiGroup();
 
+    @Query(value="select current_redis_group from system_config where id=1", nativeQuery = true)
+    public Integer getCurrentRedisGroup();
 
     @Transactional
     @Modifying
-    @Query(value="update system_config set redis_index=?1 where id=1", nativeQuery = true)
-    public void updateRedisIndex(Integer redisIndex);
+    @Query(value="update system_config set current_redis_group=?1 where id=1", nativeQuery = true)
+    public void updateCurrentRedisGroup(int i);
 
 }

@@ -15,7 +15,9 @@ public class SystemConfig {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer     id;
 
-    private Integer     redisIndex;
+    private Integer     numberOfRedisGroup;
+
+    private Integer     currentRedisGroup;
 
     public Integer getId() {
         return id;
@@ -25,19 +27,27 @@ public class SystemConfig {
         this.id = id;
     }
 
-    public Integer getRedisIndex() {
-        return redisIndex;
+    public Integer getNumberOfRedisGroup() {
+        return numberOfRedisGroup;
     }
 
-    public void setRedisIndex(Integer redisIndex) {
-        this.redisIndex = redisIndex;
+    public void setNumberOfRedisGroup(Integer numberOfRedisGroup) {
+        this.numberOfRedisGroup = numberOfRedisGroup;
+    }
+
+    public Integer getCurrentRedisGroup() {
+        return currentRedisGroup;
+    }
+
+    public void setCurrentRedisGroup(Integer currentRedisGroup) {
+        this.currentRedisGroup = currentRedisGroup;
     }
 
     @Override
     public String toString() {
-        return "SystemConfig [id=" + id + ", redisIndex=" + redisIndex + "]";
+        return "SystemConfig [currentRedisGroup=" + currentRedisGroup + ", id=" + id + ", numberOfRedisGroup="
+                + numberOfRedisGroup + "]";
     }
-
     
-
+    
 }

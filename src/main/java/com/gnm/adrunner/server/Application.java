@@ -1,5 +1,6 @@
 package com.gnm.adrunner.server;
 
+import com.gnm.adrunner.config.GlobalConstant;
 import com.gnm.adrunner.config.MemoryData;
 import com.gnm.adrunner.config.RedisConfig;
 import com.gnm.adrunner.server.repo.AdsMediaRepository;
@@ -8,6 +9,7 @@ import com.gnm.adrunner.server.repo.AffRepository;
 import com.gnm.adrunner.server.repo.AffParamRepository;
 import com.gnm.adrunner.server.repo.MediaRepository;
 import com.gnm.adrunner.server.repo.ServerInstanceRepository;
+import com.gnm.adrunner.server.repo.SystemConfigRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -39,11 +41,10 @@ public class Application {
 	@Autowired
 	AdsMediaRepository			adsMediaRepository;
 
-	public static void main(String[] args) {
-		
-		//REDIS 시작
-		RedisConfig.init();
-		
+	@Autowired
+	SystemConfigRepository systemConfigRepository;
+
+	public static void main(String[] args) {	
 		SpringApplication.run(Application.class, args);
 	}
 
@@ -60,7 +61,14 @@ public class Application {
 		MemoryData.adsMediaList			= adsMediaRepository.listAll();
 		// 메모리 변수 : 제휴사 목록 초기화
 		MemoryData.affList				= affRepository.listAll();
+
+		// Redis 그룹 개수 조회
+		GlobalConstant.NUMBER_OF_REDIS_GROUP = systemConfigRepository.findNumberOfRedsiGroup();
+		for(int i=0; i<GlobalConstant.NUMBER_OF_REDIS_GROUP; i++)
+			GlobalConstant.SERVER_HOST_REDIS.add(serverInstanceRepository.getServerClientIpWithGroup(GlobalConstant.SERVER_TYPE_REDIS, i));
 		
+		//REDIS 시작
+		RedisConfig.init();
 	}
 
 
