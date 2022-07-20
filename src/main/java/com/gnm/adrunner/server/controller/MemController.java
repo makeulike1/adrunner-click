@@ -16,6 +16,7 @@ import com.gnm.adrunner.server.repo.AffParamRepository;
 import com.gnm.adrunner.server.repo.AffRepository;
 import com.gnm.adrunner.server.repo.MediaRepository;
 import com.gnm.adrunner.server.repo.ServerInstanceRepository;
+import com.gnm.adrunner.util.timeBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -132,7 +133,7 @@ public class MemController extends RequestResponseInterface{
             case "aff-param":{
                 AffParam e1 = affParamRepository.findByID(id);
                 MemoryData.affParamList.add(e1);
-                System.out.println("MEMORY DATA NEWLY INSERTED : [AFF_PARAM][ID : "+id+"]");
+                System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA NEWLY INSERTED : [AFF_PARAM][ID : "+id+"]");
                 break;
             }
 
@@ -140,7 +141,7 @@ public class MemController extends RequestResponseInterface{
             case "ads":{
                 Ads e1 = adsRepository.findByID(id);
                 MemoryData.adsList.add(e1);
-                System.out.println("MEMORY DATA NEWLY INSERTED : [ADS][ID : "+id+"]");
+                System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA NEWLY INSERTED : [ADS][ID : "+id+"]");
                 break;
             }
             
@@ -150,7 +151,7 @@ public class MemController extends RequestResponseInterface{
             case "ads-media":{
                 AdsMedia e1 = adsMediaRepository.findByID(id);
                 MemoryData.adsMediaList.add(e1);
-                System.out.println("MEMORY DATA NEWLY INSERTED : [ADS_MEDIA][ID : "+id+"]");
+                System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA NEWLY INSERTED : [ADS_MEDIA][ID : "+id+"]");
                 break;
             }
 
@@ -160,7 +161,7 @@ public class MemController extends RequestResponseInterface{
             case "media":{
                 Media e1 = mediaRepository.findByID(id);
                 MemoryData.mediaList.add(e1);
-                System.out.println("MEMORY DATA NEWLY INSERTED : [MEDIA][ID : "+id+"]");
+                System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA NEWLY INSERTED : [MEDIA][ID : "+id+"]");
                 break;
                 
             }
@@ -170,7 +171,7 @@ public class MemController extends RequestResponseInterface{
             case "aff":{
                 Aff e1 = affRepository.findByID(id);
                 MemoryData.affList.add(e1);
-                System.out.println("MEMORY DATA NEWLY INSERTED : [AFF][ID : "+id+"]");
+                System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA NEWLY INSERTED : [AFF][ID : "+id+"]");
                 break;
             }
 
@@ -202,7 +203,7 @@ public class MemController extends RequestResponseInterface{
                 for(AffParam e : MemoryData.affParamList){
                     if(e.getId().equals(id)){
                         MemoryData.affParamList.remove(e);
-                        System.out.println("MEMORY DATA DELETED : [AFF_PARAM][ID : "+id+"]");
+                        System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA DELETED : [AFF_PARAM][ID : "+id+"]");
                         break;
                     }
                 }
@@ -214,7 +215,7 @@ public class MemController extends RequestResponseInterface{
                  for(Ads e : MemoryData.adsList){
                     if(e.getId().equals(id)){
                         MemoryData.adsList.remove(e);
-                        System.out.println("MEMORY DATA DELETED : [ADS][ID : "+id+"]");
+                        System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA DELETED : [ADS][ID : "+id+"]");
                         break;
                     }
                  }
@@ -228,7 +229,7 @@ public class MemController extends RequestResponseInterface{
                  for(AdsMedia e : MemoryData.adsMediaList){
                      if(e.getId().equals(id)){
                          MemoryData.adsMediaList.remove(e);
-                         System.out.println("MEMORY DATA DELETED : [ADS_MEDIA][ID : "+id+"]");
+                         System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA DELETED : [ADS_MEDIA][ID : "+id+"]");
                          break;
                      }
                  }
@@ -243,7 +244,7 @@ public class MemController extends RequestResponseInterface{
                  for(Media e : MemoryData.mediaList){
                     if(e.getId().equals(id)){
                         MemoryData.mediaList.remove(e);
-                        System.out.println("MEMORY DATA DELETED : [MEDIA][ID : "+id+"]");
+                        System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA DELETED : [MEDIA][ID : "+id+"]");
                         break;
                     }
                  }
@@ -258,7 +259,7 @@ public class MemController extends RequestResponseInterface{
                  for(Aff e : MemoryData.affList){
                      if(e.getId().equals(id)){
                          MemoryData.affList.remove(e);
-                         System.out.println("MEMORY DATA DELETED : [AFF][ID : "+id+"]");
+                         System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA DELETED : [AFF][ID : "+id+"]");
                      }
                  }
                  break;
@@ -297,7 +298,7 @@ public class MemController extends RequestResponseInterface{
                     if(e2.getId().equals(id)){
                         Integer indexOfItem = MemoryData.affParamList.indexOf(e2);
                         MemoryData.affParamList.set(indexOfItem, e1);
-                        System.out.println("MEMORY DATA UPDATED : [AFF_PARAM][ID : "+id+"]");
+                        System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA UPDATED : [AFF_PARAM][ID : "+id+"]");
                     }
                 }
                 break;
@@ -311,7 +312,7 @@ public class MemController extends RequestResponseInterface{
                     if(e2.getId().equals(id)){
                         Integer indexOfItem = MemoryData.adsList.indexOf(e2);
                         MemoryData.adsList.set(indexOfItem, e1);
-                        System.out.println("MEMORY DATA UPDATED : [ADS][ID : "+id+"]");
+                        System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA UPDATED : [ADS][ID : "+id+"]");
                     }
                 }
                 break;
@@ -326,7 +327,7 @@ public class MemController extends RequestResponseInterface{
                     if(e2.getId().equals(id)){
                         Integer indexOfItem = MemoryData.adsMediaList.indexOf(e2);
                         MemoryData.adsMediaList.set(indexOfItem, e1);
-                        System.out.println("MEMORY DATA UPDATED : [ADS_MEDIA][ID : "+id+"]");
+                        System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA UPDATED : [ADS_MEDIA][ID : "+id+"]");
                     }
                 }
 
@@ -341,7 +342,7 @@ public class MemController extends RequestResponseInterface{
                     if(e2.getId().equals(id)){
                         Integer indexOfItem = MemoryData.mediaList.indexOf(e2);
                         MemoryData.mediaList.set(indexOfItem, e1);
-                        System.out.println("MEMORY DATA UPDATED : [MEDIA][ID : "+id+"]");
+                        System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA UPDATED : [MEDIA][ID : "+id+"]");
                     }
                 }
                 break;
@@ -356,7 +357,7 @@ public class MemController extends RequestResponseInterface{
                     if(e2.getId().equals(id)){
                         Integer indexOfItem = MemoryData.affList.indexOf(e2);
                         MemoryData.affList.set(indexOfItem, e1);
-                        System.out.println("MEMORY DATA UPDATED : [AFF][ID : "+id+"]");
+                        System.out.println(timeBuilder.getCurrentTime() + "  MEMORY DATA UPDATED : [AFF][ID : "+id+"]");
                     }
                 }
                 break;
