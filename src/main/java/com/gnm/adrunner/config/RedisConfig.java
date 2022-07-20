@@ -21,16 +21,18 @@ public class RedisConfig {
     //REDIS 시작
 	public static void init(){
 
+        System.out.println("######################################################################");
+        System.out.println("REDIS CONNECTION INITIALIZE ... ");
         // 레디스 서버 그룹 순회
         for(int rgId=0; rgId<GlobalConstant.NUMBER_OF_REDIS_GROUP;rgId++){
 
 
             Integer numOfRe   = GlobalConstant.SERVER_HOST_REDIS.get(rgId).size();
-
-            
+            System.out.println("REDIS GROUP NUMBER : #"+rgId);
 
             List<RedisEntity> entityList = new ArrayList<RedisEntity>();
 
+            System.out.println("NUMBER OF REDIS ENTITY : "+numOfRe);
             // 레디스 그룹별 서버 호스트 순회
             for(int reId=0; reId<numOfRe; reId++){
 
@@ -38,9 +40,13 @@ public class RedisConfig {
 
                 String  redisHost       = GlobalConstant.SERVER_HOST_REDIS.get(rgId).get(reId);
 
+                System.out.println("REDIS ENTITY NUMBER : #"+reId+", HOST : "+redisHost);
+
                 // 레디스 DB는 1부터 16개까지
-                for(int rdbId=0; rdbId<GlobalConstant.NUMBER_OF_REDIS_DB; rdbId++)
+                for(int rdbId=0; rdbId<GlobalConstant.NUMBER_OF_REDIS_DB; rdbId++){
                     tmp.add(buildTemplate(redisHost, GlobalConstant.REDIS_PORT, rdbId));
+                    System.out.println("DATABASE NUMBER #"+rdbId+"\t: CONNECTED");
+                }
 
                 redisHost = null;
 
@@ -51,7 +57,13 @@ public class RedisConfig {
             redisConn.add(new RedisGroup(rgId, entityList));
 
             numOfRe = null;
+
+            System.out.println();
+            System.out.println();
         }
+
+        System.out.println("######################################################################");
+        
 	}
     
 
