@@ -11,7 +11,7 @@ import com.gnm.adrunner.server.repo.AffRepository;
 import com.gnm.adrunner.server.repo.AffParamRepository;
 import com.gnm.adrunner.server.repo.MediaRepository;
 import com.gnm.adrunner.server.repo.ServerInstanceRepository;
-import com.gnm.adrunner.server.repo.SystemConfigRepository;
+import com.gnm.adrunner.server.service.SystemConfig3Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -43,8 +43,9 @@ public class Application {
 	@Autowired
 	AdsMediaRepository			adsMediaRepository;
 
+
 	@Autowired
-	SystemConfigRepository systemConfigRepository;
+	SystemConfig3Service systemConfig3Service;
 
 	public static void main(String[] args) {	
 		SpringApplication.run(Application.class, args);
@@ -81,7 +82,7 @@ public class Application {
 
 	 
 		// Redis 그룹 개수 조회
-		GlobalConstant.NUMBER_OF_REDIS_GROUP = systemConfigRepository.findNumberOfRedisGroup();
+		GlobalConstant.NUMBER_OF_REDIS_GROUP = systemConfig3Service.countTotalRedisGroup();
 		System.out.println("NUMBER OF REDIS GROUP : " 	+ GlobalConstant.NUMBER_OF_REDIS_GROUP);
 		for(int i=0; i<GlobalConstant.NUMBER_OF_REDIS_GROUP; i++){
 			List<String> REDIS_CLIENT_IP = serverInstanceRepository.getServerClientIpWithGroup(GlobalConstant.SERVER_TYPE_REDIS, i);
